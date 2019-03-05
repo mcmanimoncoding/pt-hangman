@@ -21,104 +21,97 @@ var guesses = [];
 
 
 var buttons = function(){
-    myButtons = $("buttons");
-    letters = $("<div>");
+    myButtons = document.getElementById("buttons");
+    letters = document.createElement("ul");
 
     for (var i = 0; i < alphabet.length; i++){
         letters.id = "alphabet";
-        list = $("<p>");
-        list.addClass("letter");
+        list = document.createElement("li");
+        list.id="letter";
         list.innerHTML = alphabet[i];
-        $("#letter").attr("data-letter", alphabet[i]);
         check();
-        myButtons.appendTo(letters);
-        letters.appendTo(list);
-        console.log(alphabet[i]);
+        myButtons.appendChild(letters);
+        letters.appendChild(list);
     }
 }
-buttons();
-// // OnClick Function
-// check = function () {
-//     list.onclick = function () {
-//       var guess = (this.innerHTML);
-//       this.setAttribute("class", "active");
-//       this.onclick = null;
-//       for (var i = 0; i < randomWord.length; i++) {
-//         if (randomWord[i] === guess) {
-//           answerArray[i].innerHTML = a;
-//           counter += 1;
-//         } 
-//       }
-//     //   var j = (randomWord.indexOf(guess));
-//     //   if (j === -1) {
-//     //     lives -= 1;
-//         // comments();
-//         // animate();
-//     //   } else {
-//         // comments();
-//       }
-//     }
-  
 
-// // create '-' to represent letters in chosen randomWord
+// OnClick Function
+check = function () {
+    list.onclick = function () {
+      var guess = (this.innerHTML);
+      this.setAttribute("class", "active");
+      this.onclick = null;
+      for (var i = 0; i < randomWord.length; i++) {
+        if (randomWord[i] === guess) {
+          guesses[i].innerHTML = guess;
+          counter += 1;
+        } 
+      }
+      var j = (randomWord.indexOf(guess));
+      if (j === -1) {
+        lives -= 1;
+        comments();
+        animate();
+      } else {
+        comments();
+      }
+    }
+  }
 
-// function startUp() {
-//     for (var i = 0; i < randomWord.length; i++) {
-//         answerArray[i] = "-";
-//     }
+// create '-' to represent letters in chosen randomWord
 
-//     //putting them in a string
-//     a = answerArray.join(" ");
-//     document.getElementById("answer").innerHTML = a;
+function startUp() {
+    for (var i = 0; i < randomWord.length; i++) {
+        answerArray[i] = "-";
+    }
 
-//     buttons();
-//     letter();
-// };
+    //putting them in a string
+    a = answerArray.join(" ");
+    document.getElementById("answer").innerHTML = a;
 
-// function letter() {
-//     // var letter = document.getElementById("letter").value;
-//     // onkeyup.letter(){
-//     var letter = $(".letter").on("click", function(){
-//         console.log(this.attr("data-letter"));
+    buttons();
 
-//     });
-//     if (letter.length > 0) {
-//         for (var i = 0; i < randomWord.length; i++) {
-//             if (randomWord[i] === letter) {
-//                 answerArray[i] = letter;
-//             }
-//         }
-//         count--;
-//         document.getElementById("counter").innerHTML = "No. of Clicks: " + count;
-//         document.getElementById("answer").innerHTML = answerArray.join(" ");
-//     }
-//     // else{
+};
 
-//     // }
-//     if (count<5){
-//         document.getElementById("stat").innerHTML = "Why haven't you gotten it yet"
+function letter() {
+    var letter = document.getElementById("letter").value;
+    // onkeyup.letter(){
+    // var letter = document.onkeyup("letter").value;
+    if (letter.length > 0) {
+        for (var i = 0; i < randomWord.length; i++) {
+            if (randomWord[i] === letter) {
+                answerArray[i] = letter;
+            }
+        }
+        count--;
+        document.getElementById("counter").innerHTML = "No. of Clicks: " + count;
+        document.getElementById("answer").innerHTML = answerArray.join(" ");
+    }
+
+    if (count<5){
+        document.getElementById("stat").innerHTML = "Why haven't you gotten it yet"
        
-//     }
-//     if (count>=9){
-//         startUp();
-//     }
-//     checkWin();
-// }
+    }
+    if (count>=9){
+        startUp();
+    }
+    checkWin();
+}
 
-// document.onkeyup = function(event){
+document.onkeyup = function(event){
 
 
     
-// }
-//     // letter();
+}
+    // letter();
 
 
 
-// function checkWin() {
-//     if (answerArray.indexOf('-') === -1) {
-//       alert('You Won!');
-//     } else if (count === 0) {
-//       alert('You Lost!');
-//     }
-//   }
+function checkWin() {
+    if (answerArray.indexOf('-') === -1) {
+      alert('You Won!');
+    } else if (count === 0) {
+      alert('You Lost!');
+    }
+  }
 
