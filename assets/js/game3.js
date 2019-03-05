@@ -8,7 +8,7 @@ $(document).ready(function () {
         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
         't', 'u', 'v', 'w', 'x', 'y', 'z'
     ];
-
+    var instructions = "<h2>Guess the Mystery Word</h2>"
     var wins = 0;
     var losses = 0;
     var guesses = 9;
@@ -80,29 +80,32 @@ $(document).ready(function () {
 
     function letter() {
 
-        var letter = $("#letter").innerHTML;
-        // $("#letter").onclick = function () {
-            
-            console.log(letter);
+        $("button").on("click", function() {
 
-        // };
+        var letter = $("#letter").innerHTML;
+            // console.log(letter);
             for (var i = 0; i < randomWord.length; i++) {
                 if (randomWord[i] === letter) {
                     answerArray[i] = letter;
-                }
+                };
             }
             count--;
-            document.getElementById("counter").innerHTML = "No. of Clicks: " + count;
-            document.getElementById("answer").innerHTML = answerArray.join(" ");
-        }
-    
+
+            
+            // document.getElementById("guesses-diplay") = ("No. of Clicks: " + count);
+            // document.getElementById("answer").innerHTML = answerArray.join(" ");
+        });
+    };
+
 
     function display() {
+        $("#instructions").html(instructions);
         $("#win-display").append(wins);
         $("#lives-display").append(lives);
         $("#guesses-display").append(guesses);
         console.log("display");
-    }
+        
+    };
 
 
     buttons();
@@ -125,5 +128,5 @@ $(document).ready(function () {
 
     // create buttons by pushing each index of const alphabet into an element
     // loop through the alphabet and assign an id tag
-    //  
+    //
 })
