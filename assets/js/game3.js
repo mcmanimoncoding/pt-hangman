@@ -36,6 +36,7 @@ $(document).ready(function () {
         for (var i = 0; i < alphabet.length; i++) {
             var letters = $("<button>");
             letters.attr("id", "letter");
+            letters.attr("class", "btn btn-outline-primary btn-lg")
             letters.text(alphabet[i]);
             $("#buttons").append(letters);
 
@@ -104,7 +105,7 @@ $(document).ready(function () {
         $("#lives-display").append(lives);
         $("#guesses-display").append(guesses);
         console.log("display");
-        
+
     };
 
 
